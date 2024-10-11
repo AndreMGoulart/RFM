@@ -1,0 +1,946 @@
+:root{
+    --mount-meadow: #47c600;
+    --white-smoke: #f0f0f0;
+    --night-rider: #00622c;
+    --black: #191b17;
+    --transition: all 0.5s ease-in-out;
+}
+*{
+    font-family: 'Hind Siliguri', sans-serif;
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+html{
+    color: var(--black);
+    font-size: 1rem;
+    font-weight: 300;
+    line-height: 1.5;
+    text-rendering: optimizeLegibility;
+    scroll-behavior: smooth;
+    position: relative;
+}
+
+/* setup & reusable stylings */
+img{
+    width: 100%;
+}
+a{
+    text-decoration: none;
+    color: var(--black);
+}
+li{
+    list-style-type: none;
+}
+button{
+    cursor: pointer;
+    outline: 0;
+    background: transparent;
+}
+.container{
+    max-width: 1320px;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+h1, h2, h3, h4, h5, h6{
+    margin: 0.6rem 0;
+    line-height: 1.25;
+    font-weight: 400;
+    text-transform: capitalize;
+}
+.text{
+    margin: 0.6rem 0;
+    opacity: 0.8;
+}
+.center{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+section{
+    padding: 6.5rem 0;
+}
+.title{
+    padding: 0.6rem 0;
+    text-align: center;
+}
+.title h2{
+    font-size: 2.2rem;
+    color: var(--night-rider);
+}
+.title .text{
+    font-weight: 500;
+    font-size: 1.1rem;
+}
+
+/* ----------- header ----------- */
+.header{
+    background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.1)), url(header-bg3.jpg);
+    min-height: 100vh;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: stretch;
+    transition: background-color 0.3s ease;
+}
+.navbar {
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    padding: 10px 0px;
+    width: 100%;
+    z-index: 9000;
+    padding: 0px 0px; /* Espaçamento inicial da navbar */
+    transition: background-color 0.3s ease, padding 0.3s ease, top 0.3s ease; /* Suavizar transições */
+}
+
+.navbar.scrolled {
+    background-color: #fff; /* Cor de fundo após rolar */
+    top: -25px; /* Fixar no topo após a rolagem */
+    padding: 0px 0px; /* Reduzir o espaçamento para um efeito de compactação */
+}
+
+.navbar.scrolled .nav-link {
+    color: var(--night-rider) !important; /* Mudar a cor dos links ao rolar */
+}
+
+.brand-and-toggler{
+    font-size: 1.65rem;
+    padding: 0.8rem 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.navbar-brand{
+    font-weight: 500;
+    color: var(--night-rider);
+}
+.navbar-brand span{
+    color: var(--mount-meadow);
+}
+.navbar-toggler{
+    width: 30px;
+    height: 30px;
+    background-color: orangered;
+    border: none;
+    color: var(--mount-meadow);
+    display: none;
+}
+.navbar-nav{
+    margin: 0.2rem 0 0.6rem 0;
+}
+.nav-item{
+    padding: 0.6rem 0;
+}
+.nav-link {
+    position: relative;
+    text-transform: uppercase;
+    font-size: 0.95rem;
+    letter-spacing: 1.5px;
+    font-weight: 500;
+    opacity: 0.65;
+    transition: var(--transition);
+    color: var(--night-rider); /* Cor inicial */
+    padding-bottom: 5px; /* Espaço para a linha */
+}
+.nav-link:hover{
+    color: var(--mount-meadow)!important;
+}
+.nav-link::after {
+    content: "";
+    position: absolute;
+    width: 0; /* Inicialmente sem largura */
+    height: 2px;
+    background-color: var(--mount-meadow); /* Cor da linha */
+    bottom: 0; /* Linha posicionada na parte inferior */
+    left: 0; /* Começa da esquerda */
+    transition: width 0.4s ease-out; /* Transição suave da largura */
+}
+
+.nav-link:hover::after {
+    width: 100%; /* Expande a linha até o lado direito */
+}
+.navbar-collapse{
+    display: none;
+}
+.hero-div{
+    flex: 1;
+    flex-direction: column;
+    text-align: center;
+}
+.hero-div h1{
+    font-size: 2.55rem;
+    padding-bottom: 0.4rem;
+}
+.hero-div p{
+    color: var(--white-smoke);
+    font-size: 1.05rem;
+    letter-spacing: 3px;
+}
+.hero-btns{
+    margin-top: 2.8rem;
+}
+.hero-btns button{
+    border: 3.5px solid #fff;
+    border-radius: 2rem;
+    padding: 0.8rem 2rem;
+    text-transform: uppercase;
+}
+.btn-trans{
+    color: #fff;
+    transition: var(--transition);
+    display: none;
+}
+.btn-trans:hover{
+    background: var(--mount-meadow);
+    border-color: var(--mount-meadow);
+}
+.btn-white{
+    color: #fff;
+    transition: var(--transition);
+}
+.btn-white:hover{
+    background: #fff;
+    color: var(--mount-meadow);
+}
+
+/* detail */
+.detail{
+    background: var(--white-smoke);
+}
+.detail-item{
+    background: #fff;
+    text-align: center;
+    box-shadow: 0 1px 2px 0 rgba(90, 91, 95, 0.1);
+    -webkit-box-shadow: 0 1px 2px 0 rgba(90, 91, 95, 0.1);
+    -moz-box-shadow: 0 1px 2px 0 rgba(90, 91, 95, 0.1);
+    margin: 2rem 0;
+    padding: 3.5rem 1.5rem;
+    border-radius: 4px;
+    transition: var(--transition);
+}
+.detail-item:hover{
+    -webkit-box-shadow: 0 21px 19px -2px rgba(217, 217, 217, 1);
+    -moz-box-shadow: 0 21px 19px -2px rgba(217, 217, 217, 1);
+    box-shadow: 0 21px 19px -2px rgba(217, 217, 217, 1);
+    transform: translateY(-5px);
+}
+.detail-item img{
+    font-size: 1rem;
+}
+.detail-item h2{
+    font-size: 1.4rem;
+    opacity: 0.8;
+    font-weight: 300;
+}
+.line{
+    width: 45px;
+    margin: 1.2rem auto;
+    background: var(--mount-meadow);
+    height: 2.5px;
+}
+.icon {
+    width: 50px;
+}
+
+/* feature */
+.feature .title{
+    text-align: left;
+}
+.feature-left img{
+    width: 80%;
+    margin: 0 auto;
+}
+.feature-right{
+    margin-top: 4rem;
+}
+.feature-item{
+    margin: 1.4rem 0;
+    display: flex;
+}
+.feature-item div h3{
+    margin-top: 0;
+    font-size: 1.4rem;
+    font-weight: 300;
+    opacity: 0.85;
+}
+.feature-item span{
+    font-size: 1.1rem;
+    color: #fff;
+    background: var(--mount-meadow);
+    align-self: flex-start;
+    padding: 0.4rem 0.7rem;
+    border-radius: 2px;
+    margin-right: 1.4rem;
+}
+
+/* video */
+.video{
+    background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.7)), url(img-02.jpg);
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    color: #fff;
+    text-align: center;
+}
+.video a{
+    font-size: 2.2rem;
+    color: #fff;
+    width: 65px;
+    height: 65px;
+    border-radius: 50%;
+    background-color: var(--mount-meadow);
+    padding-left: 7px;
+    margin: 0 auto;
+}
+.video h2{
+    font-size: 2rem;
+    color: var(--white-smoke);
+    padding: 1.2rem 0;
+}
+.video p{
+    font-size: 1.1rem;
+    letter-spacing: 1px;
+    color: var(--white-smoke);
+    opacity: 0.7;
+}
+
+/* Carousel team */
+.team-icons{
+    position: absolute;
+    top: 0%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    background: var(--white-smoke);
+    opacity: 0;
+    transition: var(--transition);
+}
+.team-icons a{
+    color: var(--night-rider);
+    width: 50px;
+    height: 50px;
+    transition: var(--transition);
+   
+}
+.team-icons a:hover{
+    background: var(--mount-meadow);
+    color: #fff;
+}
+.team-img:hover .team-icons{
+    opacity: 1;
+}
+.team-info{
+    text-align: center;
+    padding: 1.5rem;
+    line-height: 1;
+   
+}
+.team-info h3{
+    font-size: 1.4rem;
+    color: var(--night-rider);
+}
+.team-info span{
+    font-size: 0.85rem;
+    letter-spacing: 1px;
+    font-weight: 500;
+    opacity: 0.7;
+}
+/* Carousel */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.carousel {
+    width: 100%;
+    overflow: hidden;
+}
+
+.carousel-container {
+    display: flex;
+    width: 100%;
+    transition: transform 0.5s ease;
+}
+
+.team-item {
+    min-width: 25%; /* Exibe 4 itens por vez no modo desktop */
+    padding: 10px;
+    margin: 5px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.5s ease;
+}
+
+.team-img {
+    position: relative;
+    width: 100%;
+}
+
+.team-img img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.team-icons {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin: 0 auto;
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    background-color: transparent;
+}
+
+.team-icons a {
+    margin: 0 5px;
+    color: #fff;
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 10px;
+    border-radius: 50%;
+    display: flex;
+}
+
+.team-img:hover .team-icons {
+    opacity: 1;
+}
+
+.team-info {
+    text-align: center;
+    padding: 15px;
+}
+
+.team-info h3 {
+    font-size: 1.2em;
+    margin-bottom: 5px;
+}
+
+.team-info span {
+    font-size: 0.9em;
+    color: #777;
+}
+
+@media (max-width: 768px) {
+    .team-item {
+        min-width: 50%; /* Exibe 2 itens por vez no modo tablet */
+    }
+}
+
+@media (max-width: 480px) {
+    .team-item {
+        min-width: 100%; /* Exibe 1 item por vez no modo mobile */
+    }
+}
+
+/* Fim Carousel */
+
+/* FAQ */
+.faq {
+    background: #f9f9f9;
+}
+.faq .row {
+    margin-top: 2rem;
+}
+.faq-item {
+    margin: 0.6rem 0;
+}
+.faq-head {
+    background: var(--white-smoke);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    padding: 0.2rem 1.8rem;
+}
+.faq-head h3 {
+    font-weight: 300;
+    opacity: 0.8;
+}
+.faq-content {
+    background: #fff;
+    overflow: hidden;
+    max-height: 0; /* Inicia oculto */
+    padding: 0 1.8rem; /* Padding lateral */
+    transition: max-height 0.4s ease, padding 0.4s ease; /* Transições suaves */
+}
+.show-faq-content {
+    max-height: 500px; /* Aumente para um valor que acomode todo o conteúdo */
+    padding: 0.6rem 1.8rem; /* Padding ao abrir */
+}
+
+/* pricing */
+.pricing .row{
+    margin-top: 2rem;
+}
+.pricing-item{
+    border: 2.5px solid #f9f9f9;
+    text-align: center;
+    padding: 3.4rem 0;
+    margin: 2rem 0;
+}
+.pricing-item h2{
+    color: var(--night-rider);
+    opacity: 0.7;
+    font-size: 1.5rem;
+}
+.pricing-item .price{
+    padding: 1.5rem 0 1rem 0;
+    line-height: 1.1;   
+}
+.pricing-item .price span{
+    display: block;
+}
+.pricing-item .price span:first-child{
+    font-size: 2.6rem;
+    letter-spacing: 2px;
+    color: var(--mount-meadow);
+}
+.pricing-item .price span:last-child{
+    font-size: 0.85rem;
+    letter-spacing: 1;
+    font-weight: 500;
+}
+.pricing-item ul li{
+    padding: 0.8rem 0;
+    opacity: 0.7;
+}
+
+
+/* testimonial */
+.testimonial {
+    background-image: linear-gradient(rgba(27, 188, 156, 0.8), rgba(27, 188, 156, 0.9)), url(/assets/testimonial-bg.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: fixed;
+    position: relative;
+}
+
+.testimonial .title h2,
+.testimonial .title {
+    color: #fff;
+}
+
+.testimonial .row {
+    margin-top: 2rem;
+}
+
+.testimonial-img {
+    border: 4px solid #fff;
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    margin: 2.5rem auto;
+    padding: 0.5rem;
+}
+
+.testimonial-img img {
+    border-radius: 50%;
+}
+
+.testimonial-item {
+    text-align: center;
+    display: none; /* Esconde todos os itens inicialmente */
+}
+
+.testimonial-item p {
+    font-size: 1.3rem;
+    color: var(--white-smoke);
+    line-height: 1.7;
+}
+
+.testimonial-item span {
+    margin-top: 0.4rem;
+    display: block;
+    font-size: 1.1rem;
+    color: #fff;
+    font-weight: 500;
+}
+
+.testimonial-carousel {
+    position: relative;
+    overflow: hidden; /* Esconde os itens que estão fora da área visível */
+    height: 300px; /* Defina a altura adequada para o carousel */
+}
+
+.controls {
+    display: flex;
+    justify-content: center; /* Centraliza os retângulos */
+    margin-top: 20px; /* Espaço acima dos controles */
+}
+
+.control-item {
+    width: 60px; /* Largura do retângulo */
+    height: 10px; /* Altura do retângulo */
+    background-color: rgba(255, 255, 255, 0.6); /* Cor do retângulo */
+    margin: 2px 5px; /* Espaçamento entre retângulos */
+    cursor: pointer;
+    border-radius: 3px; /* Borda arredondada */
+    transition: background-color 0.3s;
+}
+
+.control-item.active {
+    background-color: rgba(255, 255, 255, 1); /* Cor do retângulo ativo */
+}
+
+
+/* contact */
+.contact .row{
+    margin-top: 2rem;
+}
+
+.contact .row > div{
+    margin: 2rem 0;
+    padding: 1rem 0;
+}
+.contact .row > div h2{
+    font-size: 1.4rem;
+    font-weight: 300;
+    opacity: 0.9;
+}
+.contact-left form input,
+.contact-left form textarea{
+    width: 100%;
+    font-size: 1.1rem;
+    margin: 0.2rem 0;
+    padding: 0.8rem 0.6rem;
+    border: none;
+    border-bottom: 1.5px solid #f0f0f0;
+    outline: 0;
+}
+.contact-left form input::placeholder,
+.contact-left form textarea::placeholder{
+    font-size: 1.1rem;
+    font-weight: 300;
+    opacity: 0.8;
+}
+.contact-left form input:focus,
+.contact-left form textarea:focus{
+    border-color: var(--night-rider);
+}
+.submit-btn{
+    margin: 1rem 0;
+    border: none;
+    font-size: 1.3rem;
+    color: #fff;
+    background: var(--mount-meadow);
+    opacity: 0.9;
+    padding: 0.8rem 3.4rem;
+    border-radius: 2rem;
+    transition: var(--transition);
+}
+.submit-btn:hover{
+    background: var(--black);
+}
+.contact-right div{
+    margin: 2rem 0;
+}
+
+/* footer */
+.footer{
+    text-align: center;
+    background: var(--black);
+    color: var(--white-smoke);
+    padding: 2rem 0;
+    height: 50vh;
+}
+.footer .text{
+    opacity: 0.8;
+}
+.footer-links{
+    display: flex;
+    justify-content: center;
+    margin-top: 1.6rem;
+}
+.footer-links a{
+    color: var(--white-smoke);
+    opacity: 0.8;
+    width: 50px;
+    height: 50px;
+    margin: 0 0.2rem;
+    border-radius: 50%;
+    transition: var(--transition);
+}
+.footer-links a:hover{
+    background: var(--mount-meadow);
+}
+
+.scroll-container {
+    width: 100%;
+    position: absolute; /* Para posicionar o botão em relação ao footer */
+    height: 60px; /* Altura suficiente para evitar sobreposição */
+    bottom: 0px;
+}
+
+.scroll-to-top {
+    position: absolute; /* Posiciona em relação à div */
+    bottom: 10px; /* Distância do fundo da div */
+    right: 20px; /* Distância da direita */
+    width: 50px; /* Largura do quadrado */
+    height: 50px; /* Altura do quadrado */
+    background-color: var(--night-rider); /* Cor do fundo do botão */
+    color: #fff; /* Cor da seta */
+    display: flex;
+    justify-content: center; /* Centraliza a seta horizontalmente */
+    align-items: center; /* Centraliza a seta verticalmente */
+    border-radius: 5px; /* Bordas arredondadas */
+    text-decoration: none; /* Remove o sublinhado */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3); /* Sombra para efeito de profundidade */
+    transition: background-color 0.3s; /* Transição suave para a cor de fundo */
+}
+
+.scroll-to-top:hover {
+    background-color: #4CAF50; /* Cor ao passar o mouse */
+}
+
+
+/* #### Media Queries #### */
+
+@media screen and (min-width: 768px){
+    .detail .row{
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 2rem;
+    }
+    .detail-item{
+        margin: 0;
+    }
+    .video h2{
+        font-size: 2.6rem;
+    }
+    .video p{
+        font-size: 1.2rem;
+        width: 75%;
+        margin: 0 auto;
+    }
+    .team-item{
+        margin: 0;
+    }
+    .faq .row{
+        width: 80%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .pricing .row{
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 2rem;
+    }
+    .pricing-item{
+        margin: 0;
+    }
+    .testimonial-item p{
+        width: 75%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .contact .row{
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        column-gap: 2rem;
+    }
+    .contact-right > div:first-child{
+        margin-top: 0;
+    }
+}
+
+
+
+@media screen and (min-width: 992px){
+    
+    .navbar{
+        background: transparent;
+        margin-top: 1.4rem;
+    }
+    .navbar .container{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+    .navbar-brand{
+        color: var(--white-smoke);
+        font-size: 2rem;
+    }
+  
+    .navbar-collapse{
+        display: block!important;
+    }
+    .navbar-nav{
+        display: flex;
+        margin: 0;
+    }
+    .nav-item{
+        margin-left: 1.8rem;
+    }
+    .nav-link{
+        color: var(--white-smoke);
+    }
+    .hero-div h1{
+        font-size: 3.8rem;
+    }
+    .btn-trans{
+        display: inline-block;
+        margin-right: 0.8rem;
+    }
+  
+
+    /* navbar change */
+    .cng-navbar{
+        -webkit-box-shadow: 0 2px 5px 0 rgba(207, 205, 207, 0.3);
+        -moz-box-shadow: 0 2px 5px 0 rgba(207, 205, 207, 0.3);
+        box-shadow: 0 2px 5px 0 rgba(207, 205, 207, 0.3);
+        margin-top: 0;
+        background: #fff;
+    }
+    .cng-navbar .navbar-brand{
+        color: var(--night-rider);
+    }
+    .cng-navbar .nav-link{
+        color: var(--night-rider);
+    }
+    .feature .row{
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        align-items: center;
+        column-gap: 2rem;
+    }
+    .feature-right{
+        margin-top: 0;
+    }
+    .video p{
+        width: 60%;
+    }
+}
+
+
+@media screen and (max-width: 992px){
+
+        /* ----------------------- Burger ------------------------ */
+    /* Estilos gerais do navbar */
+.navbar {
+    position: fixed; /* Fixa o navbar no topo */
+    width: 100%;
+    padding: 10px 15px;
+    background: transparent; /* Inicialmente transparente */
+    transition: background 0.3s ease;
+    z-index: 1000; /* Acima de outros elementos */
+}
+.navbar.scrolled {
+    background-color: #fff; /* Cor de fundo após rolar */
+    top: 0px; /* Fixar no topo após a rolagem */
+    padding: 0px 15px; /* Reduzir o espaçamento para um efeito de compactação */
+    transition: 0.3s;
+}
+
+/* Estilos do navbar-toggler */
+.navbar-toggler {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 30px;
+    height: 30px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    z-index: 2000; /* Acima de outros elementos */
+}
+
+.bar {
+    height: 2px;
+    width: 100%;
+    background: var(--mount-meadow); /* Cor da barra */
+    transition: all 0.3s ease; /* Transição suave */
+}
+
+/* Estilos para o menu */
+.navbar-collapse {
+    position: fixed; /* Fixo no lugar */
+    right: -100%; /* Começa fora da tela à direita */
+    width: 70%; /* Largura do menu */
+    height: 90vh; /* Altura total da viewport */
+    background-color: #fff; /* Fundo semi-transparente */
+    z-index: 999; /* Acima de outros elementos */
+    transition: right 0.3s ease; /* Transição suave */
+    display: flex; /* Mantém os itens flexíveis */
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+/* Exibir o menu quando o toggler é ativado */
+.navbar-collapse.active {
+    right: 0; /* Move o menu para dentro da tela */
+}
+
+
+/* Exibir o navbar com fundo após o scroll */
+.navbar.scrolled {
+    background: #fff; /* Cor do navbar após o scroll */
+}
+
+/* Adicione margens aos itens da lista */
+.navbar-nav {
+    display: flex;
+    flex-direction: column; /* Itens em coluna */
+    padding: 0; /* Remove padding */
+}
+
+.nav-item {
+    margin: 1rem 0; /* Margem entre os itens */
+}
+
+.nav-link {
+    color: var(--night-rider);
+    font-size: 1.2rem; /* Aumenta o tamanho da fonte para facilitar a leitura */
+    text-align: center; /* Centraliza o texto */
+}
+
+/* Animação do botão quando ativo */
+.navbar-toggler.open .bar:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px); /* Animação da primeira barra */
+}
+
+.navbar-toggler.open .bar:nth-child(2) {
+    opacity: 0; /* Oculta a segunda barra */
+}
+
+.navbar-toggler.open .bar:nth-child(3) {
+    transform: rotate(-45deg) translate(9px, -9px); /* Animação da terceira barra */
+}
+/* ----------------------- Burger ------------------------ */
+
+}
+
+
+
+@media screen and (min-width: 1200px){
+    .hero-div h1{
+        width: 70%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .detail .row{
+        grid-template-columns: repeat(3, 1fr);
+    }
+    .pricing .row{
+        grid-template-columns: repeat(3, 1fr);
+    }
+    .testimonial-item p{
+        width: 60%;
+    }
+    .contact .row{
+        column-gap: 4rem;
+    }
+    .contact-right{
+        padding-left: 4rem!important;
+    }
+
+    
+}
